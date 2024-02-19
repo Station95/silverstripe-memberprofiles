@@ -14,6 +14,7 @@ use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Security\Group;
 use SilverStripe\Security\Member;
+use SilverStripe\Security\Security;
 use SilverStripe\Forms\TabSet;
 use SilverStripe\Forms\Tab;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
@@ -180,7 +181,7 @@ class MemberProfilePage extends Page
     public function Link($action = null)
     {
         if (!$action
-            && Member::currentUserID()
+            && Security::getCurrentUser()
             && !$this->AllowProfileEditing
             && $this->CanAddMembers()
         ) {
